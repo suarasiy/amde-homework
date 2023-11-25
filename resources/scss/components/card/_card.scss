@@ -1,0 +1,92 @@
+@use "./colors" as colors;
+
+.card {
+    position: relative;
+    background: colors.$bg-color-card;
+    padding: 2rem;
+    border-radius: 12px;
+    color: colors.$color-text;
+    width: 100%;
+    // min-width: 750px;
+    padding: 1rem 2.5rem 1rem 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+
+    & > &__img-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        aspect-ratio: 1/1;
+        height: 100%;
+        width: 120px;
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+    }
+
+    & > &__metadata {
+        display: flex;
+        flex-direction: column;
+        gap: .35rem;
+
+        .tag {
+            font-family: inherit;
+            font-size: .65rem;
+            padding: .2rem .5rem;
+            border-radius: 5px;
+            color: colors.$color-tag;
+            font-weight: 500;
+            background: colors.$bg-color-tag;
+            width: fit-content;
+            &.on-broadcast {
+                color: colors.$color-text-broadcast;
+                background-color: colors.$bg-color-broadcast;
+            }
+        }
+
+        h1 {
+            font-family: "Quicksand";
+            font-size: 1.45rem;
+            color: colors.$color-text-title;
+            font-weight: 700;
+        }
+
+        time {
+            font-size: .72rem;
+            font-weight: 400;
+            color: colors.$color-text-info-summary;
+        }
+
+        .avatar-list {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+                object-position: center center;
+                object-fit: cover;
+                border: 2px solid colors.$bg-color-card;
+
+                &:not(:first-child) {
+                    margin-left: -1rem;
+                }
+            }
+            .summary {
+                font-size: .8rem;
+                font-family: inherit;
+                color: colors.$color-text-info-summary;
+                text-decoration: underline;
+                margin-left: .75rem;
+            }
+        }
+    }
+}
