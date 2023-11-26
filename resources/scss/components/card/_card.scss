@@ -8,7 +8,7 @@
     color: colors.$color-text;
     width: 100%;
     // min-width: 750px;
-    padding: 1rem 2.5rem 1rem 1rem;
+    padding: 1rem;
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -21,6 +21,7 @@
         aspect-ratio: 1/1;
         height: 100%;
         width: 120px;
+        flex-shrink: 0;
         img {
             position: absolute;
             inset: 0;
@@ -35,6 +36,7 @@
         display: flex;
         flex-direction: column;
         gap: .35rem;
+        width: 100%;
 
         .tag {
             font-family: inherit;
@@ -86,6 +88,33 @@
                 color: colors.$color-text-info-summary;
                 text-decoration: underline;
                 margin-left: .75rem;
+            }
+        }
+    }
+
+    & > &__action {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        height: 100%;
+        width: 200px;
+        min-height: 123px;
+        flex-shrink: 0;
+        button {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: .85rem;
+            font-family: "Inter";
+            height: 100%;
+            flex-grow: 1;
+            &.primary {
+                background-color: colors.$color-button-primary;
+                color: colors.$color-text;
+            }
+            &.secondary {
+                background-color: colors.$color-button-secondary;
+                color: colors.$color-button-text-secondary;
             }
         }
     }

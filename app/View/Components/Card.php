@@ -6,6 +6,7 @@ use Illuminate\View\Component;
 
 class Card extends Component
 {
+    public $title;
     public $message;
 
     /**
@@ -13,8 +14,9 @@ class Card extends Component
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($title, $message)
     {
+        $this->title = $title;
         $this->message = $message;
     }
 

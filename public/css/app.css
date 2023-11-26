@@ -7,7 +7,7 @@
   border-radius: 12px;
   color: #ffffff;
   width: 100%;
-  padding: 1rem 2.5rem 1rem 1rem;
+  padding: 1rem;
   display: flex;
   flex-direction: row;
   gap: 1rem;
@@ -20,6 +20,7 @@
   aspect-ratio: 1/1;
   height: 100%;
   width: 120px;
+  flex-shrink: 0;
 }
 .card > .card__img-container img {
   position: absolute;
@@ -33,6 +34,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  width: 100%;
 }
 .card > .card__metadata .tag {
   font-family: inherit;
@@ -82,12 +84,31 @@
   text-decoration: underline;
   margin-left: 0.75rem;
 }
-
-.flex-row {
+.card > .card__action {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  width: 200px;
+  min-height: 123px;
+  flex-shrink: 0;
+}
+.card > .card__action button {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: "Inter";
+  height: 100%;
+  flex-grow: 1;
+}
+.card > .card__action button.primary {
+  background-color: #5684FF;
+  color: #ffffff;
+}
+.card > .card__action button.secondary {
+  background-color: rgba(87, 132, 255, 0.1);
+  color: #5684FF;
 }
 
 main.app {
@@ -113,18 +134,30 @@ main.app div.heading {
   flex-direction: column;
   gap: 0.3rem;
   align-items: center;
+  font-family: "Quicksand";
+}
+main.app div.heading * {
+  font-family: inherit;
 }
 main.app div.heading h1.title {
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #FFFFFF;
 }
 main.app div.heading p.subtitle {
   font-size: 0.75rem;
   font-weight: 500;
   color: #FFFFFF;
+  opacity: 0.8;
+}
+main.app div.heading time {
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #FFFFFF;
 }
 main.app nav {
+  position: relative;
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -133,6 +166,15 @@ main.app nav {
   align-items: center;
   padding: 1rem 2rem 0.75rem;
   border-bottom: 1px solid #1F2639;
+}
+main.app nav > .progress {
+  position: absolute;
+  background-color: #5684FF;
+  left: 0;
+  bottom: -1px;
+  width: 50%;
+  height: 2px;
+  transition: all 0.3s ease-in-out;
 }
 main.app nav .menu {
   position: relative;
@@ -328,6 +370,33 @@ button {
   background: unset;
   outline: unset;
   border: unset;
+}
+
+.debug {
+  border: 1px solid red;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+img.img-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+img.img-bg.right {
+  left: unset;
+  right: 0;
+  transform: rotateZ(-180deg) rotateX(180deg);
 }
 
 /*# sourceMappingURL=app.css.map */

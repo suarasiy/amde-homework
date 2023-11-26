@@ -1,0 +1,26 @@
+.debug {
+    border: 1px solid red;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+
+img.img-bg {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    &.right {
+        left: unset;
+        right: 0;
+        transform: rotateZ(-180deg) rotateX(180deg);
+    }
+}

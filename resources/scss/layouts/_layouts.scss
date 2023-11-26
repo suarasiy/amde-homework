@@ -1,12 +1,5 @@
 @use "../vars/colors/colors" as colors;
 
-.flex-row {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-}
-
 main.app {
     width: 100%;
     padding: 2rem;
@@ -29,18 +22,30 @@ main.app {
         flex-direction: column;
         gap: .3rem;
         align-items: center;
+        font-family: "Quicksand";
+        * {
+            font-family: inherit;
+        }
         h1.title {
             font-size: 1.75rem;
-            font-weight: 600;
+            font-weight: 700;
             color: colors.$color-text;
         }
         p.subtitle {
             font-size: .75rem;
             font-weight: 500;
             color: colors.$color-text;
+            opacity: .8;
+        }
+        time {
+            margin-top: 1rem;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: colors.$color-text;
         }
     }
     nav {
+        position: relative;
         display: flex;
         width: 100%;
         flex-direction: row;
@@ -49,6 +54,15 @@ main.app {
         align-items: center;
         padding: 1rem 2rem .75rem;
         border-bottom: 1px solid colors.$color-horizontal-line;
+        > .progress {
+            position: absolute;
+            background-color: colors.$color-progress;
+            left: 0;
+            bottom: -1px;
+            width: 50%;
+            height: 2px;
+            transition: all .3s ease-in-out;
+        }
         .menu {
             position: relative;
             font-size: .7rem;

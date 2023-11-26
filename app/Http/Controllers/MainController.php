@@ -6,15 +6,22 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+    public $data;
+
+    public function __construct()
+    {
+        $this->data = [
+            ['title'  => 'Let\'s watch together! Ariana Broadcast', 'time' => date('M d, Y')],
+            ['title'  => 'Anisong piano cover - #3', 'time' => date('M d, Y')],
+            ['title'  => 'NightyF - Graphic Design on Figma', 'time' => date('M d, Y')],
+            ['title'  => 'Explore through everest mountain!', 'time' => date('M d, Y')],
+            ['title'  => 'Geoguessr with Tantei Seia', 'time' => date('M d, Y')],
+        ];
+    }
+
     public function main()
     {
-        $data = [
-            ['id' => 1, 'message' => 'example 1'],
-            ['id' => 2, 'message' => 'example 2'],
-            ['id' => 3, 'message' => 'example 3'],
-            ['id' => 4, 'message' => 'example 4'],
-            ['id' => 5, 'message' => 'example 5'],
-        ];
-        return view('pages.main', ['dummy' => $data]);
+        $dummy = $this->data;
+        return view('pages.main', ['dummy' => $dummy]);
     }
 }
