@@ -6,11 +6,11 @@ use Livewire\Component;
 
 class CardList extends Component
 {
-    protected $listeners = ['testing' => 'increment', 'paginate_previous' => 'paginate_previous', 'paginate_next' => 'paginate_next'];
+    protected $listeners = ['testing' => 'increment', 'paginate_previous', 'paginate_next', 'set_auto_update', 'is_refreshed'];
     public $count = 0;
     public $data, $origin;
     public $auto_update_options = [
-        "refetch_data" => false,
+        "refetch_data" => true,
         "interval" => "3s" // format "<number>ms || <number>s"
     ];
     protected $options = [
@@ -65,9 +65,16 @@ class CardList extends Component
         $this->on_paginate();
     }
 
-    public function __construct()
+    public function mount()
     {
         $this->initial_options();
+        // note: I thought I can create emit on-mount...
+    }
+
+    public function __construct()
+    {
+        $this->emit('auto_update_options', $this->auto_update_options);
+        // $this->initial_options();
     }
 
     public function increment()
@@ -100,10 +107,23 @@ class CardList extends Component
             // $shuffled = collect($this->data)->shuffle();
             // $this->data = $shuffled;
         }
+        $this->emit('is_refreshed');
+    }
+
+    public function set_auto_update()
+    {
+        $this->auto_update_options['refetch_data'] = !$this->auto_update_options['refetch_data'];
+        // $this->emit('auto_update_options', $this->auto_update_options);
+    }
+
+    public function is_refreshed()
+    {
+        // 
     }
 
     public function render()
     {
+        // $this->emit('auto_update_options', $this->auto_update_options);
         return view('livewire.card-list');
     }
 }

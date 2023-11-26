@@ -16,16 +16,7 @@
             <p class="subtitle">You're doing great! take a break on your personal galaxy and enjoy the show~ ^^</p>
             <livewire:clock />
         </div>
-        <div class="main-wrapper">
-            <nav>
-                <div class="flex-row">
-                    <span class="menu timer">Auto-refresh in: 7</span>
-                </div>
-                <livewire:pagination />
-                <span class="progress"></span>
-            </nav>
-            <livewire:card-list />
-        </div>
+        <livewire:card-list />
     </main>
 @endsection
 
@@ -33,8 +24,8 @@
 @push('livewire-scripts')
     @livewireScripts
     <script>
-        Livewire.on('testing', () => {
-            alert('Increment has fired!');
-        })
+        // Livewire.on('testing', () => {
+        //     alert('Increment has fired!');
+        // })
     </script>
 @endpush

@@ -15,18 +15,6 @@ class Pagination extends Component
     //     $this->paginate_next = $paginate_next;
     // }
 
-    public function paginate_next()
-    {
-        $this->data = [
-            ['title'  => 'Geoguessr with Tantei Seia', 'time' => date('M d, Y')],
-        ];
-    }
-
-    public function paginate_previous()
-    {
-        $this->has_previous++;
-    }
-
     public function render()
     {
         return view('livewire.pagination');
