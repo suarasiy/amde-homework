@@ -12,7 +12,7 @@ class CardList extends Component
 
     public $auto_update_options = [
         "refetch_data" => true,
-        "interval" => "3s" // format "<number>ms || <number>s"
+        "interval" => "10s" // format "<number>ms || <number>s"
     ];
     protected $options = [
         "limit" => 10, // feel free to change it

@@ -59,19 +59,12 @@
                     // console.log(component)
                 })
                 window.addEventListener('is_refreshed', (event) => {
-                    // get the second / milisecond interval configuration
-                    // const interval_split = event.detail.data.interval.match(/(\d+|[^\d]+)/g)
-                    // const timing = interval_split[0]
-                    // const frequency_type = interval_split[1]
-
                     if (event.detail.data.refetch_data) {
-                        // let duration = timing;
-                        // if (frequency_type.toString().toLowerCase() === 's') {
-                        //     duration = duration * 1000;
-                        // }
                         toast.classList.add('animate')
                         setTimeout(() => {
                             toast.classList.remove('animate')
+
+                            // 2500 is the duration of css animation
                         }, 2500);
                     }
                 })
