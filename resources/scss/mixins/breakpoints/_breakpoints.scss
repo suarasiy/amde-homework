@@ -1,0 +1,51 @@
+$size-desktop: 1920px;
+$size-laptop-lg: 1440px;
+$size-laptop: 1024px;
+$size-tablet-lg: 768px;
+$size-tablet: 615px;
+$size-mobile-lg: 425px;
+$size-mobile: 375px;
+$size-mobile-sm: 320px;
+
+@mixin breakpoint($point) {
+    @if ($point == desktop) {
+        @media screen and (max-width: $size-desktop) {
+            @content;
+        }
+    }
+    @if ($point == desktop-lg) {
+        @media screen and (max-width: $size-laptop-lg) {
+            @content;
+        }
+    }
+    @if ($point == laptop) {
+        @media screen and (max-width: $size-laptop) {
+            @content;
+        }
+    }
+    @if ($point == tablet-lg) {
+        @media screen and (max-width: $size-tablet-lg) {
+            @content;
+        }
+    }
+    @if ($point == tablet) {
+        @media screen and (max-width: $size-tablet) {
+            @content;
+        }
+    }
+    @if ($point == mobile-lg) {
+        @media screen and (max-width: $size-mobile-lg) {
+            @content;
+        }
+    }
+    @if ($point == mobile) {
+        @media screen and (max-width: $size-mobile) {
+            @content;
+        }
+    }
+    @if ($point == mobile-sm) {
+        @media screen and (max-width: $size-mobile-sm) {
+            @content;
+        }
+    }
+}

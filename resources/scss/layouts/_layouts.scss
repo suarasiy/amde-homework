@@ -1,4 +1,5 @@
 @use "../vars/colors/colors" as colors;
+@use "../mixins/breakpoints/breakpoints" as mixins;
 
 main.app {
     width: 100%;
@@ -8,11 +9,21 @@ main.app {
     gap: 4rem;
     align-items: center;
     user-select: none;
+
+    @include mixins.breakpoint(tablet) {
+        padding: 2rem 0;
+    }
+
     > .logo {
         width: 330px;
         height: auto;
         object-fit: contain;
         transition: transform .3s ease-in-out;
+
+        @include mixins.breakpoint(mobile-lg) {
+            width: 230px;
+        }
+
         &:hover {
             transform: scale(1.15);
         }
@@ -23,8 +34,14 @@ main.app {
         gap: .3rem;
         align-items: center;
         font-family: "Quicksand";
+
+        @include mixins.breakpoint(tablet-lg) {
+            margin: 0 1rem;
+        }
+
         * {
             font-family: inherit;
+            text-align: center;
         }
         h1.title {
             font-size: 1.75rem;
@@ -45,7 +62,8 @@ main.app {
         }
     }
     nav {
-        position: relative;
+        position: sticky;
+        top: 0;
         display: flex;
         width: 100%;
         flex-direction: row;
@@ -53,8 +71,24 @@ main.app {
         gap: .75rem;
         align-items: center;
         padding: 1rem 2rem .75rem;
+        background-color: rgb(18, 22, 33, .93);
         border-bottom: 1px solid colors.$color-horizontal-line;
         overflow: hidden;
+        z-index: 50;
+        backdrop-filter: blur(75px);
+
+        @include mixins.breakpoint(mobile) {
+            gap: .3rem;
+        }
+
+        @include mixins.breakpoint(tablet-lg) {
+            flex-wrap: wrap;
+            padding: 1rem 3rem .75rem;
+        }
+        @include mixins.breakpoint(mobile) {
+            flex-direction: column;
+            padding: 1rem;
+        }
         > .progress {
             @keyframes progress {
                 0% { left: calc(0% - 20%); width: 20%; }
@@ -124,15 +158,22 @@ main.app {
             }
             &.timer {
                 &::after {
-                    @include icon('timer', 'facing-right', 'position-left')
+                    @include icon('timer', 'facing-right', 'position-left');
+                    @include mixins.breakpoint(mobile) {
+                        content: unset;
+                    }
                 }
             }
         }
         button {
+            transition: all .2s ease-out;
             &.menu {
                 &:hover {
                     background: rgba(255, 255, 255, 0.03);
                 }
+            }
+            &:active:not([disabled]) {
+                transform: scale(.9);
             }
             &[disabled] {
                 cursor: not-allowed;
@@ -147,6 +188,39 @@ div.main-wrapper {
     max-width: 850px;
     margin: 0 auto;
     width: 100%;
+
+    > .float-actions {
+        position: sticky;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem 2rem;
+        margin: 1rem 0 0;
+        z-index: 50;
+        align-items: center;
+        justify-content: center;
+        bottom: 0;
+        background: linear-gradient(to top, colors.$bg-base, transparent);
+        button {
+            font-family: 'Inter', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: .85rem;
+            font-weight: 600;
+            border-radius: 1.3rem;
+            padding: .5rem 1.35rem;
+            background: linear-gradient(to bottom, colors.$color-float-primary, rgba(87, 132, 255, 0.6));
+            backdrop-filter: blur(40px);
+            color: colors.$color-text;
+            transition: all .2s ease-out;
+            &:hover {
+                filter: brightness(1.25);
+            }
+            &:active {
+                transform: scale(.95);
+            }
+        }
+    }
 }
 div.main-card {
     width: 100%;
@@ -156,4 +230,78 @@ div.main-card {
     align-items: center;
     gap: 1rem;
     padding-top: 2rem;
+    @include mixins.breakpoint(tablet) {
+        padding: 2rem 1rem 1rem;
+    }
+}
+
+footer {
+    margin: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.45rem;
+    align-items: center;
+    color: colors.$color-text;
+    user-select: none;
+
+    > img.logo {
+        width: 200px;
+        height: auto;
+        object-fit: contain;
+        object-position: center center;
+        @include mixins.breakpoint(mobile-lg) {
+            display: none;
+        }
+    }
+    p {
+        font-size: .75rem;
+        font-weight: 600;
+        opacity: .75;
+        font-family: 'Quicksand', 'Inter', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+    a {
+        color: colors.$color-link;
+        font-weight: 600;
+        text-decoration: solid;
+        text-decoration-line: underline;
+        text-decoration-color: colors.$color-underline-link;
+        text-decoration-thickness: 2px;
+        &:hover {
+            color: colors.$color-underline-link;
+        }
+    }
+}
+
+.toast {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: fit-content;
+    background-color: colors.$color-toast;
+    color: colors.$color-toast-text;
+    font-weight: 600;
+    font-size: .9rem;
+    font-family: 'Inter', 'Quicksand', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: .75rem 1.3rem;
+    border-radius: 10px;
+    transform: translateX(-50%) scale(0);
+    z-index: 100;
+    opacity: 0;
+    text-align: center;
+
+    @keyframes toast {
+        0% { top: 35px; transform: translateX(-50%) scale(.75); opacity: 0; }
+        25% { top: 90px; transform: translateX(-50%) scale(1); opacity: 1; }
+        50% { top: 90px; transform: translateX(-50%) scale(1); opacity: 1; }
+        75% { top: 90px; transform: translateX(-50%) scale(1); opacity: 1; }
+        100% { top: 35px; transform: translateX(-50%) scale(.75); opacity: 0; }
+    }
+
+    &.animate {
+        animation-name: toast;
+        animation-duration: 2.5s;
+        animation-iteration-count: 1;
+        animation-timing-function: cubic-bezier(.17,1.31,.31,1.0);
+    }
 }

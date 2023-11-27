@@ -1,4 +1,5 @@
 @use "./colors" as colors;
+@use "../../mixins/breakpoints/breakpoints" as mixins;
 
 .card {
     position: relative;
@@ -12,16 +13,41 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    align-items: flex-start;
+    align-items: stretch;
+
+    &.dummy {
+        background-color: colors.$bg-color-card-dummy;
+        .avatar-list img {
+            border: 2px solid colors.$bg-color-card-dummy;
+        }
+    }
+    
+    @include mixins.breakpoint(tablet-lg) {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 
     & > &__img-container {
         position: relative;
         overflow: hidden;
         border-radius: 10px;
         aspect-ratio: 1/1;
-        height: 100%;
+        max-height: 160px;
         width: 120px;
         flex-shrink: 0;
+
+        @include mixins.breakpoint(tablet-lg) {
+            aspect-ratio: unset;
+            width: 100%;
+            height: 375px;
+            max-height: 375px;
+        }
+
+        @include mixins.breakpoint(mobile) {
+            height: 300px;
+            max-height: 300px;
+        }
+
         img {
             position: absolute;
             inset: 0;
@@ -32,11 +58,15 @@
         }
     }
 
-    & > &__metadata {
+    &__metadata {
         display: flex;
         flex-direction: column;
         gap: .35rem;
         width: 100%;
+
+        @include mixins.breakpoint(tablet-lg) {
+            margin: 1rem .5rem;
+        }
 
         .tag {
             font-family: inherit;
@@ -51,6 +81,14 @@
                 color: colors.$color-text-broadcast;
                 background-color: colors.$bg-color-broadcast;
             }
+            &.on-soon {
+                color: colors.$color-text-soon;
+                background-color: colors.$bg-color-soon;
+            }
+            &.on-ended {
+                color: colors.$color-text-ended;
+                background-color: colors.$bg-color-ended;
+            }
         }
 
         h1 {
@@ -58,6 +96,10 @@
             font-size: 1.45rem;
             color: colors.$color-text-title;
             font-weight: 700;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
         }
 
         time {
@@ -70,6 +112,11 @@
             display: flex;
             flex-direction: row;
             align-items: center;
+
+            @include mixins.breakpoint(tablet-lg) {
+                margin: .8rem 0;
+            }
+
             img {
                 width: 30px;
                 height: 30px;
@@ -108,6 +155,7 @@
             font-family: "Inter";
             height: 100%;
             flex-grow: 1;
+            transition: all .2s cubic-bezier(.32,.87,.24,1);
             &.primary {
                 background-color: colors.$color-button-primary;
                 color: colors.$color-text;
@@ -116,6 +164,19 @@
                 background-color: colors.$color-button-secondary;
                 color: colors.$color-button-text-secondary;
             }
+            &:hover {
+                transform: scale(1.025);
+                filter: brightness(1.15);
+            }
+        }
+        @include mixins.breakpoint(tablet-lg) {
+            margin-top: 1rem;
+            width: 100%;
+            flex-direction: row;
+            min-height: unset;
+        }
+        @include mixins.breakpoint(mobile-lg) {
+            flex-direction: column;
         }
     }
 }

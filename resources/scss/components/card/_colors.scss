@@ -2,7 +2,11 @@
 $color-tag: #ffffff;
 $bg-color-tag: rgba(255, 255, 255, 0.08);
 $color-text-broadcast: #FF3A6A;
-$bg-color-broadcast: rgb(255, 56, 106, 0.10);
+$bg-color-broadcast: rgba(255, 56, 106, 0.10);
+$color-text-soon: #5684FF;
+$bg-color-soon: rgba(87, 132, 255, 0.10);
+$color-text-ended: #ffe056;
+$bg-color-ended: rgba(255, 224, 87, 0.10);
 
 // card
 $color-text: #ffffff;
@@ -10,9 +14,10 @@ $color-text-title: #DDE4F6;
 $color-text-subtitle: #939FBF;
 $color-text-info-summary: #939FBF;
 $bg-color-card: #1F2639;
+$bg-color-card-dummy: #283863;
 
 // button
 $color-button-primary: #5684FF;
 $color-button-text-primary: #5684FF;
-$color-button-secondary: rgb(87, 132, 255, 0.1);
+$color-button-secondary: rgba(87, 132, 255, 0.1);
 $color-button-text-secondary: #5684FF;

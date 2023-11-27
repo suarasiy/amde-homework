@@ -16,6 +16,10 @@
             <p class="subtitle">You're doing great! take a break on your personal galaxy and enjoy the show~ ^^</p>
             <livewire:clock />
         </div>
+        {{-- toast: is_refreshed --}}
+        <span class="toast" role="toast">
+            Data updated by auto-refresh
+        </span>
         <livewire:card-list />
     </main>
 @endsection

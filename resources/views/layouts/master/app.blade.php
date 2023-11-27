@@ -35,6 +35,9 @@
 
     {{-- scripts --}}
     @stack('custom-scripts')
+
+    {{-- footer --}}
+    @include('layouts.master.footer')
 </body>
 
 </html>
